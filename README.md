@@ -57,19 +57,22 @@
 
 ## Change logs
 
--   Write a paragraph labelled with the date every day you work on the project to discuss what you've done for the say. Be specific about the changes that have happened for that day.
+-   Write a paragraph labelled with the date every day you work on the project to discuss what you've done for the day. Be specific about the changes that have happened for that day.
 
-### 13/02/2022 - {Theme of changes if applicable}
+### 22/08/2023 - {Initial Commit}
 
--   Extended the expiry time of JWT tokens on the backend
--   Added users to cohort response payload
--   Centralized API base URL on frontend using the proxy `package.json` property
+-   Implemented the Spring back end
+-   Added React / TS front end to get all employees
+-   Added tailwind
+
+### 23/08/2023 - {Update front-end}
 
 ---
 
 ## What did you struggle with?
 
--   What? Why? How?
+-   First repo that I have created using TypeScript for the front end
+-   Also first time using Tailwind CSS
 
 ---
 
