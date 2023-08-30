@@ -14,7 +14,7 @@ interface RefreshContextProviderProps {
 const RefreshContextProvider: React.FC<RefreshContextProviderProps> = ({
     children,
 }) => {
-    const [refresh, setRefresh] = useState(0);
+    const [refresh, setRefresh] = useState<number>(0);
 
     return (
         <RefreshContext.Provider value={{ refresh, setRefresh }}>

@@ -7,6 +7,7 @@ import EmployeesList from "./containers/EmployeesList";
 import FetchEmployees, {
     Employee,
 } from "./components/FetchEmployees/FetchEmployees";
+import AddEmployees from "./components/AddEmployees/AddEmployees";
 
 function App() {
     const [employees, setEmployees] = useState<Employee[]>([]);
@@ -20,6 +21,7 @@ function App() {
                         path="/"
                         element={<EmployeesList employees={employees} />}
                     />
+                    <Route path="/add-employee" element={<AddEmployees />} />
                 </Routes>
                 <FetchEmployees setEmployees={setEmployees} />
             </BrowserRouter>
