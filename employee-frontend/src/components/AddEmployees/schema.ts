@@ -14,5 +14,11 @@ export const schema = yup.object({
     address: yup.string().required("Please enter an address"),
     employmentHours: yup.mixed().oneOf(["FULL_TIME", "PART_TIME"]),
     startDate: yup.date().required("Please enter start date"),
-    finishDate: yup.date().nullable().notRequired(),
+    finishDate: yup
+        .date()
+        .nullable()
+        .transform((value, originalValue) => {
+            return originalValue === "" ? null : value;
+        })
+        .notRequired(),
 });

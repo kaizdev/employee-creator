@@ -5,6 +5,7 @@ import io.nology.employeecreator.employee.EmployeeEnum.EmploymentType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
+import org.springframework.lang.Nullable;
 
 public class CreateEmployeeDTO {
 
@@ -32,6 +33,7 @@ public class CreateEmployeeDTO {
   @NotNull
   Date startDate;
 
+  @Nullable
   Date finishDate;
 
   public String getFirstName() {

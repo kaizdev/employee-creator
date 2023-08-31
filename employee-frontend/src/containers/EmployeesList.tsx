@@ -13,11 +13,10 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
             <h1 className="text-xl font-medium text-purple-600">
                 ACME Employee List
             </h1>
+            <p>Total number of employees: {employees.length}</p>
 
             <div className="flex justify-between">
-                <p>
-                    Please click on 'Edit' to find more details of each employee
-                </p>
+                <p>Edit or delete employees below</p>
                 <p>
                     <Link to="/add-employee">
                         <UserPlus size={32} />

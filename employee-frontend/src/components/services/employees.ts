@@ -19,7 +19,7 @@ export const createEmployee = async (data: any) => {
 };
 
 export const updateEmployee = async (data: any, id: number) => {
-    const response = await fetch(`"http://localhost:8080/employees/${id}`, {
+    const response = await fetch(`http://localhost:8080/employees/${id}`, {
         method: "PATCH",
         body: JSON.stringify(data),
         headers: {
