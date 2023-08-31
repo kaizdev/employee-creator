@@ -16,42 +16,50 @@
     -   3 API end points (create employee, list of existing employees and delete employee)
 -   Web app to create, list, modify and delete employees
 -   Stack:
-    -   React and TypeScript
-    -   Java and Spring
+    -   Front end: Vite, React, TypeScript, Tailwind
+        -   Front end dependencies include:
+            -   @hookform/resolvers
+            -   @phosphor-icons/react
+            -   react-dom": "^18.2.0",
+            -   react-hook-form": "^7.45.4",
+            -   react-router-dom
+            -   yup
+    -   Back end: Java and Spring
 
 ---
 
 ## Build Steps
 
--   how to build / run project
--   use proper code snippets if there are any commands to run
+-   Build the project using `npm install` via terminal
+-   After installation, run the front end using `npm run dev` and then press `o` or click the local link. this will run on localhost port 5173
+-   The back end is started by running `EmployeecreatorApplication.java` in the `src/main/java/io/nology/employeecreator` folder. This will run on port 8080
 
 ---
 
 ## Design Goals / Approach
 
--   Design goals
--   why did you implement this the way you did?
+-   I wanted the design to be minimalistic and provide only the necessary information
+-   This design was chosen as it is easy to use and user friendly
 
 ---
 
 ## Features
 
--   What features does the project have?
--   list them...
+-   The project is a working full stack application to add, modify and delete employees from a database
+-   Create new employee form is created through React Hook Form and Yup validation
+-   Icons are from Phosphor icons
 
 ---
 
 ## Known issues
 
--   Remaining bugs, things that have been left unfixed
--   Features that are buggy / flimsy
+-   N/A
 
 ---
 
 ## Future Goals
 
--   What are the immediate features you'd add given more time
+-   Additional styling and visual uplift
 
 ---
 
@@ -59,30 +67,33 @@
 
 -   Write a paragraph labelled with the date every day you work on the project to discuss what you've done for the day. Be specific about the changes that have happened for that day.
 
-### 22/08/2023 - {Initial Commit}
+### 22/08/2023 - {Initial Commit and back end MVP}
 
--   Implemented the Spring back end
+-   Implemented the Spring back end with working CRUD
 -   Added React / TS front end to get all employees
 -   Added tailwind
 
-### 23/08/2023 - {Update front-end}
+### 30/08/2023 - {Added create new employee functionality for front end}
+
+-   Implemented the create new employee form for the front end
+-   Form validation added via yup resolver
+
+### 31/08/2023 - {Added update functionality and styling to front end}
+
+-   Implemented updating of employees form for the front end
+-   Added button styling and icons
 
 ---
 
 ## What did you struggle with?
 
 -   First repo that I have created using TypeScript for the front end
--   Also first time using Tailwind CSS
+-   This was also the first project I have created using Tailwind for CSS (previously have used SCSS). Tailwind has a lot of new syntax to learn however I can see the potential efficiencies and use cases for Tailwind as it removes bespoke CSS code
 
 ---
 
 ## Licensing Details
 
--   What type of license are you releasing this under?
+-   Free for non-commercial use
 
 ---
-
-## Further details, related projects, reimplementations
-
--   Is this project a reimplementation for something you've done in the past? if so explain it and link it here.
--   If it's an API, is there a client app that works with this project? link it
