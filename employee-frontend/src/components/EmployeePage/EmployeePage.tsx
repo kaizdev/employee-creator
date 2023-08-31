@@ -5,18 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { updateEmployee } from "../services/employees";
 
 const EmployeePage: React.FC<EmployeeProps> = ({ employee }) => {
-    const {
-        id,
-        firstName,
-        lastName,
-        email,
-        mobile,
-        employmentType,
-        address,
-        employmentHours,
-        startDate,
-        finishDate,
-    } = employee;
+    const { id } = employee;
 
     // required to avoid the TS error due to the possible null value
     const refreshContext = useContext(RefreshContext);
@@ -46,6 +35,7 @@ const EmployeePage: React.FC<EmployeeProps> = ({ employee }) => {
         } catch (e) {
             setError(true);
             console.log(e);
+            console.log(error);
         }
     };
 

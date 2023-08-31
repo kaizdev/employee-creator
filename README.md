@@ -20,8 +20,8 @@
         -   Front end dependencies include:
             -   @hookform/resolvers
             -   @phosphor-icons/react
-            -   react-dom": "^18.2.0",
-            -   react-hook-form": "^7.45.4",
+            -   react-dom
+            -   react-hook-form
             -   react-router-dom
             -   yup
     -   Back end: Java and Spring
@@ -31,7 +31,7 @@
 ## Build Steps
 
 -   Build the project using `npm install` via terminal
--   After installation, run the front end using `npm run dev` and then press `o` or click the local link. this will run on localhost port 5173
+-   After installation, run the front end using `npm run dev` and then press `o` or click the local link. This will run on localhost port 5173
 -   The back end is started by running `EmployeecreatorApplication.java` in the `src/main/java/io/nology/employeecreator` folder. This will run on port 8080
 
 ---
