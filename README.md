@@ -1,11 +1,15 @@
 # Employee Creator - Full Stack
 
-{add test badges here, all projects you build from here on out will have tests, therefore you should have github workflow badges at the top of your repositories: [Github Workflow Badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge)}
+The Employee Creator is a full stack application with CRUD functionality developed on React and Spring.
+Employees can be added, deleted or updated directly through the front end
 
 ## Demo & Snippets
 
--   Include hosted link
--   Include images of app if CLI or Client App
+All employees:
+![All employees](./src/main/resources/static/all_employees.jpg)
+
+Edit employees:
+![Edit employees](./src/main/resources/static/edit_employee.jpg)
 
 ---
 
@@ -24,7 +28,7 @@
             -   react-hook-form
             -   react-router-dom
             -   yup
-    -   Back end: Java and Spring
+    -   Back end: Java, Spring, mySQL
 
 ---
 
@@ -32,6 +36,7 @@
 
 -   Build the project using `npm install` via terminal
 -   After installation, run the front end using `npm run dev` and then press `o` or click the local link. This will run on localhost port 5173
+-   Create the database table using mySQL and running the command `CREATE DATABASE employee_creator`
 -   The back end is started by running `EmployeecreatorApplication.java` in the `src/main/java/io/nology/employeecreator` folder. This will run on port 8080
 
 ---
@@ -65,20 +70,18 @@
 
 ## Change logs
 
--   Write a paragraph labelled with the date every day you work on the project to discuss what you've done for the day. Be specific about the changes that have happened for that day.
-
-### 22/08/2023 - {Initial Commit and back end MVP}
+### 22/08/2023 - Initial Commit and back end MVP
 
 -   Implemented the Spring back end with working CRUD
 -   Added React / TS front end to get all employees
 -   Added tailwind
 
-### 30/08/2023 - {Added create new employee functionality for front end}
+### 30/08/2023 - Added create new employee functionality for front end
 
 -   Implemented the create new employee form for the front end
 -   Form validation added via yup resolver
 
-### 31/08/2023 - {Added update functionality and styling to front end}
+### 31/08/2023 - Added update functionality and styling to front end
 
 -   Implemented updating of employees form for the front end
 -   Added button styling and icons
