@@ -86,6 +86,10 @@ Edit employees:
 -   Implemented updating of employees form for the front end
 -   Added button styling and icons
 
+### 12/09/2023 - Added tests Java
+
+-   Added test for EmployeeService layer
+
 ---
 
 ## What did you struggle with?
