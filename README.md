@@ -65,6 +65,7 @@ Edit employees:
 ## Future Goals
 
 -   Additional styling and visual uplift
+-   Add React testing
 
 ---
 
