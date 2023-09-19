@@ -7,8 +7,9 @@ export type Employee = {
     address: string;
     employmentType: string;
     employmentHours: string;
-    startDate: string;
-    finishDate?: string;
+    partTimeHours?: number | null;
+    startDate: Date;
+    finishDate?: Date | null;
 };
 
 export interface EmployeeProps {
@@ -21,7 +22,8 @@ export interface EmployeeProps {
         address: string;
         employmentType: string;
         employmentHours: string;
-        startDate: string;
-        finishDate?: string;
+        partTimeHours?: number | null;
+        startDate: Date;
+        finishDate?: Date | null;
     };
 }

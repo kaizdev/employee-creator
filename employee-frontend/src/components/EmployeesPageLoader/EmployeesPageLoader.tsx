@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEmployeeById } from "../services/employees";
-import EmployeePage from "../EmployeePage/EmployeePage";
 import { Employee } from "../services/types";
+import EmployeeForm from "../EmployeeForm/EmployeeForm";
 
 const EmployeesPageLoader = () => {
     const { id } = useParams();
@@ -25,7 +25,7 @@ const EmployeesPageLoader = () => {
 
     return (
         <>
-            {!loading && employee && <EmployeePage employee={employee} />}
+            {!loading && employee && <EmployeeForm employee={employee} />}
             {!loading && error && <p>{error.message}</p>}
         </>
     );

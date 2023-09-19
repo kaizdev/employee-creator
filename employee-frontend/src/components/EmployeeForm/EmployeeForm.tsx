@@ -1,12 +1,18 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { schema } from "./schema";
+import { schema } from "./schema.ts";
 import { useNavigate } from "react-router-dom";
-import { createEmployee } from "../services/employees";
+import { createEmployee, updateEmployee } from "../services/employees";
 import { useContext, useState } from "react";
 import { RefreshContext } from "../context/RefreshContextProvider";
+import { Employee } from "../services/types.ts";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.tsx";
 
-const AddEmployees = () => {
+interface EmployeeFormProps {
+    employee: Employee | null;
+}
+
+const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee }) => {
     // required to avoid the TS error due to the possible null value
     const refreshContext = useContext(RefreshContext);
 
@@ -24,13 +30,20 @@ const AddEmployees = () => {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm({ resolver: yupResolver(schema) });
+        watch,
+    } = useForm({
+        resolver: yupResolver(schema),
+        defaultValues: employee || {},
+    });
 
     const formSubmit = async (formData: any) => {
         console.log("Form Data", formData);
         try {
-            const employee = await createEmployee(formData);
-            console.log(employee);
+            if (employee) {
+                await updateEmployee(formData, employee.id);
+            } else {
+                await createEmployee(formData);
+            }
             setRefresh(refresh + 1);
             navigate("/");
         } catch (e) {
@@ -39,10 +52,14 @@ const AddEmployees = () => {
         }
     };
 
+    const selectedEmploymentHours = watch("employmentHours", "");
+
     return (
         <>
             <h2 className="text-xl font-medium text-purple-600">
-                Use this form to add a new employee
+                {employee
+                    ? "Update the employee details"
+                    : "Use this form to add a new employee"}
             </h2>
             <form onSubmit={handleSubmit(formSubmit)}>
                 <div className="flex flex-col items-start">
@@ -53,7 +70,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4 mt-2"
                         {...register("firstName")}
                     />
-                    {errors.firstName && errors.firstName.message}
+                    <ErrorMessage error={errors.firstName} />
 
                     <label htmlFor="lastName">Last Name</label>
                     <input
@@ -62,7 +79,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("lastName")}
                     />
-                    {errors.lastName && errors.lastName.message}
+                    <ErrorMessage error={errors.lastName} />
 
                     <label htmlFor="email">Email</label>
                     <input
@@ -71,6 +88,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("email")}
                     />
+                    <ErrorMessage error={errors.email} />
 
                     <label htmlFor="mobile">Mobile</label>
                     <input
@@ -79,7 +97,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("mobile")}
                     />
-                    {errors.mobile && errors.mobile.message}
+                    <ErrorMessage error={errors.mobile} />
 
                     <label htmlFor="employmentType">Employment Type</label>
                     <select
@@ -93,7 +111,7 @@ const AddEmployees = () => {
                         <option value="CONTRACT">CONTRACT</option>
                         <option value="PERMANENT">PERMANENT</option>
                     </select>
-                    {errors.employmentType && errors.employmentType.message}
+                    <ErrorMessage error={errors.employmentType} />
 
                     <label htmlFor="address">Address</label>
                     <input
@@ -102,7 +120,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("address")}
                     />
-                    {errors.address && errors.address.message}
+                    <ErrorMessage error={errors.address} />
 
                     <label htmlFor="employmentHours">Employment Hours</label>
                     <select
@@ -116,7 +134,22 @@ const AddEmployees = () => {
                         <option value="FULL_TIME">FULL TIME</option>
                         <option value="PART_TIME">PART TIME</option>
                     </select>
-                    {errors.employmentHours && errors.employmentHours.message}
+                    <ErrorMessage error={errors.employmentHours} />
+
+                    {selectedEmploymentHours === "PART_TIME" && (
+                        <>
+                            <label htmlFor="partTimeHours">
+                                Part Time Hours
+                            </label>
+                            <input
+                                id="partTimeHours"
+                                type="text"
+                                className="border rounded-md focus:border-blue-500 w-64 mb-4"
+                                {...register("partTimeHours")}
+                            />
+                            <ErrorMessage error={errors.partTimeHours} />
+                        </>
+                    )}
 
                     <label htmlFor="startDate">Start Date</label>
                     <input
@@ -125,7 +158,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("startDate")}
                     />
-                    {errors.startDate && errors.startDate.message}
+                    <ErrorMessage error={errors.startDate} />
 
                     <label htmlFor="finishDate">Finish Date</label>
                     <input
@@ -134,7 +167,7 @@ const AddEmployees = () => {
                         className="border rounded-md focus:border-blue-500 w-64 mb-4"
                         {...register("finishDate")}
                     />
-                    {errors.finishDate && errors.finishDate.message}
+                    <ErrorMessage error={errors.finishDate} />
                 </div>
 
                 <div>
@@ -142,12 +175,17 @@ const AddEmployees = () => {
                         type="submit"
                         className="mx-auto bg-green-600 rounded-full bg-green w-40 text-white"
                     >
-                        Create New Employee
+                        {employee ? "Update Employee" : "Create New Employee"}
                     </button>
                 </div>
             </form>
-            {error && <p>Error: Could not create new employee</p>}
+            {error && (
+                <p className="text-red-500">
+                    Error: Could not create new employee or update existing
+                    employee
+                </p>
+            )}
         </>
     );
 };
-export default AddEmployees;
+export default EmployeeForm;

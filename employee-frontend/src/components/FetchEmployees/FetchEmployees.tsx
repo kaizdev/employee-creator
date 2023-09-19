@@ -11,6 +11,7 @@ export interface Employee {
     address: string;
     employmentType: string;
     employmentHours: string;
+    partTimeHours?: number;
     startDate: string;
     finishDate?: string;
 }

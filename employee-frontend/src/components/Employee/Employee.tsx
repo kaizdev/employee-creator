@@ -24,6 +24,7 @@ const Employee: React.FC<EmployeeProps> = ({ employee }) => {
         address,
         employmentType,
         employmentHours,
+        partTimeHours,
         startDate,
         finishDate,
     } = employee;
@@ -87,18 +88,20 @@ const Employee: React.FC<EmployeeProps> = ({ employee }) => {
 
                     <div className="flex items-center mb-2">
                         <Hourglass className="mr-2" />
-                        {employmentHours}
+                        {employmentHours === "PART_TIME"
+                            ? `${employmentHours}: ${partTimeHours} hours/week`
+                            : employmentHours}
                     </div>
 
                     <div className="flex items-center mb-2">
                         <Play className="mr-2" />
-                        {startDate}
+                        {startDate.toString()}
                     </div>
 
                     <div className="flex items-center mb-2">
                         <FlagCheckered className="mr-2" />
                         {finishDate ? (
-                            <span>Finish date: {finishDate}</span>
+                            <span>Finish date: {finishDate.toString()}</span>
                         ) : (
                             "Not applicable"
                         )}
