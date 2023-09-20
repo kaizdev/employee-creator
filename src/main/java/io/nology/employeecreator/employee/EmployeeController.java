@@ -2,6 +2,7 @@ package io.nology.employeecreator.employee;
 
 import io.nology.employeecreator.exceptions.NotFoundException;
 import jakarta.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,24 @@ public class EmployeeController {
     }
     return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
   }
+
+  // GET THE EMPLOYMENT TYPES
+  @GetMapping("/employmentTypes")
+  public ResponseEntity<List<String>> getEmploymentTypes() {
+    List<String> employmentTypes = Arrays
+      .stream(EmployeeEnum.EmploymentType.values())
+      .map(Enum::name)
+      .toList();
+    return new ResponseEntity<>(employmentTypes, HttpStatus.OK);
+  }
+
+  // GET THE EMPLOYMENT HOURS
+  @GetMapping("/employmentHours")
+  public ResponseEntity<List<String>> getEmploymentHours() {
+    List<String> employmentHours = Arrays
+      .stream(EmployeeEnum.EmploymentHours.values())
+      .map(Enum::name)
+      .toList();
+    return new ResponseEntity<>(employmentHours, HttpStatus.OK);
+  }
 }
-//

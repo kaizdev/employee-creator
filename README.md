@@ -28,7 +28,11 @@ Edit employees:
             -   react-hook-form
             -   react-router-dom
             -   yup
+            -   axios
     -   Back end: Java, Spring, mySQL
+        -   Backend dependencies include:
+            -   model mapper
+            -   lombok
 
 ---
 
@@ -90,6 +94,22 @@ Edit employees:
 ### 12/09/2023 - Added tests Java
 
 -   Added test for EmployeeService layer
+
+### 19/09/2023 - Updates based on feedback
+
+-   Updates based on feedback:
+    -   added validation for phone number
+    -   now capture and display part time hours when employment type is part time
+    -   finish date validation requires at least on or after start date
+    -   created new EmployeeForm which merged the newEmployee and updateEmployee components
+    -   updated styling for errors to make it visually stand out
+
+### 20/09/2023 - Added endpoint for dynamic selections
+
+-   new endpoint in backend for `employmentTypes` and `employmentHours`
+-   updated front end to get retrieve the employmentTypes and employmentHours from the end points and dynamically populate the selections on the Employee Form
+-   Added additional tests for creating and updating employees
+-   Replaced boiler code with lombok
 
 ---
 

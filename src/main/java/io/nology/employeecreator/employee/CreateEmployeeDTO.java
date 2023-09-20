@@ -4,9 +4,16 @@ import io.nology.employeecreator.employee.EmployeeEnum.EmploymentHours;
 import io.nology.employeecreator.employee.EmployeeEnum.EmploymentType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateEmployeeDTO {
 
   @NotBlank
@@ -19,6 +26,7 @@ public class CreateEmployeeDTO {
   String email;
 
   @NotBlank
+  @Pattern(regexp = "^04\\d{8}$")
   String mobile;
 
   @NotBlank
@@ -30,103 +38,12 @@ public class CreateEmployeeDTO {
   @NotNull
   EmploymentHours employmentHours;
 
+  @Nullable
+  Integer partTimeHours;
+
   @NotNull
   Date startDate;
 
   @Nullable
   Date finishDate;
-
-  public String getFirstName() {
-    return this.firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return this.lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getEmail() {
-    return this.email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getMobile() {
-    return this.mobile;
-  }
-
-  public void setMobile(String mobile) {
-    this.mobile = mobile;
-  }
-
-  public String getAddress() {
-    return this.address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  public EmploymentType getEmploymentType() {
-    return this.employmentType;
-  }
-
-  public void setEmploymentType(EmploymentType employmentType) {
-    this.employmentType = employmentType;
-  }
-
-  public EmploymentHours getEmploymentHours() {
-    return this.employmentHours;
-  }
-
-  public void setEmploymentHours(EmploymentHours employmentHours) {
-    this.employmentHours = employmentHours;
-  }
-
-  public Date getStartDate() {
-    return this.startDate;
-  }
-
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-
-  public Date getFinishDate() {
-    return this.finishDate;
-  }
-
-  public void setFinishDate(Date finishDate) {
-    this.finishDate = finishDate;
-  }
-
-  public CreateEmployeeDTO(
-    String firstName,
-    String lastName,
-    String email,
-    String mobile,
-    String address,
-    EmploymentType employmentType,
-    EmploymentHours employmentHours,
-    Date startDate,
-    Date finishDate
-  ) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.mobile = mobile;
-    this.address = address;
-    this.employmentType = employmentType;
-    this.employmentHours = employmentHours;
-    this.startDate = startDate;
-    this.finishDate = finishDate;
-  }
 }
