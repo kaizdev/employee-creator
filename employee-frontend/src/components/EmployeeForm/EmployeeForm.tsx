@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { schema } from "./schema.ts";
 import { useNavigate } from "react-router-dom";
 import { createEmployee, updateEmployee } from "../services/employees";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RefreshContext } from "../context/RefreshContextProvider";
 import { Employee } from "../services/types.ts";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.tsx";
+import axios from "axios";
 
 interface EmployeeFormProps {
     employee: Employee | null;
@@ -15,6 +16,29 @@ interface EmployeeFormProps {
 const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee }) => {
     // required to avoid the TS error due to the possible null value
     const refreshContext = useContext(RefreshContext);
+
+    const [employmentTypes, setEmploymentTypes] = useState([]);
+    const [employmentHours, setEmploymentHours] = useState([]);
+    const [areOptionsLoaded, setAreOptionsLoaded] = useState(false);
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const employmentTypesRes = await axios.get(
+                    "http://localhost:8080/employees/employmentTypes"
+                );
+                const employmentHoursRes = await axios.get(
+                    "http://localhost:8080/employees/employmentHours"
+                );
+                setEmploymentTypes(employmentTypesRes.data);
+                setEmploymentHours(employmentHoursRes.data);
+                setAreOptionsLoaded(true);
+            } catch (error) {
+                console.error("Could not fetch options", error);
+            }
+        };
+        fetchOptions();
+    }, []);
 
     if (!refreshContext)
         throw new Error(
@@ -99,19 +123,28 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee }) => {
                     />
                     <ErrorMessage error={errors.mobile} />
 
-                    <label htmlFor="employmentType">Employment Type</label>
-                    <select
-                        id="employmentType"
-                        className="border rounded-md focus:border-blue-500 w-64 mb-4"
-                        {...register("employmentType")}
-                    >
-                        <option value="" disabled>
-                            SELECT ONE
-                        </option>
-                        <option value="CONTRACT">CONTRACT</option>
-                        <option value="PERMANENT">PERMANENT</option>
-                    </select>
-                    <ErrorMessage error={errors.employmentType} />
+                    {areOptionsLoaded && (
+                        <>
+                            <label htmlFor="employmentType">
+                                Employment Type
+                            </label>
+                            <select
+                                id="employmentType"
+                                className="border rounded-md focus:border-blue-500 w-64 mb-4"
+                                {...register("employmentType")}
+                            >
+                                <option value="" disabled>
+                                    SELECT ONE
+                                </option>
+                                {employmentTypes.map((type, index) => (
+                                    <option key={index} value={type}>
+                                        {type}
+                                    </option>
+                                ))}
+                            </select>
+                            <ErrorMessage error={errors.employmentType} />
+                        </>
+                    )}
 
                     <label htmlFor="address">Address</label>
                     <input
@@ -122,19 +155,28 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee }) => {
                     />
                     <ErrorMessage error={errors.address} />
 
-                    <label htmlFor="employmentHours">Employment Hours</label>
-                    <select
-                        id="employmentHours"
-                        className="border rounded-md focus:border-blue-500 w-64 mb-4"
-                        {...register("employmentHours")}
-                    >
-                        <option value="" disabled>
-                            SELECT ONE
-                        </option>
-                        <option value="FULL_TIME">FULL TIME</option>
-                        <option value="PART_TIME">PART TIME</option>
-                    </select>
-                    <ErrorMessage error={errors.employmentHours} />
+                    {areOptionsLoaded && (
+                        <>
+                            <label htmlFor="employmentHours">
+                                Employment Hours
+                            </label>
+                            <select
+                                id="employmentHours"
+                                className="border rounded-md focus:border-blue-500 w-64 mb-4"
+                                {...register("employmentHours")}
+                            >
+                                <option value="" disabled>
+                                    SELECT ONE
+                                </option>
+                                {employmentHours.map((hours, index) => (
+                                    <option key={index} value={hours}>
+                                        {hours}
+                                    </option>
+                                ))}
+                            </select>
+                            <ErrorMessage error={errors.employmentHours} />
+                        </>
+                    )}
 
                     {selectedEmploymentHours === "PART_TIME" && (
                         <>
