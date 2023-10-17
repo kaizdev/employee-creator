@@ -39,7 +39,7 @@ Edit employees:
 ## Build Steps
 
 -   Build the project using `npm install` via terminal
--   After installation, run the front end using `npm run dev` and then press `o` or click the local link. This will run on localhost port 5173
+-   After installation, cd into `employee-frontend` and then run the front end using `npm run dev` and then press `o` or click the local link. This will run on localhost port 5173
 -   Create the database table using mySQL and running the command `CREATE DATABASE employee_creator`
 -   The back end is started by running `EmployeecreatorApplication.java` in the `src/main/java/io/nology/employeecreator` folder. This will run on port 8080
 

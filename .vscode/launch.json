@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EmployeecreatorApplication<employeecreator>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.nology.employeecreator.EmployeecreatorApplication",
+            "projectName": "employeecreator",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

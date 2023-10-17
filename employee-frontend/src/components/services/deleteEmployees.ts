@@ -14,6 +14,6 @@ export const deleteEmployees = async (id: number) => {
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Error occured while deleting employee");
+        alert("Error occurred while deleting employee");
     }
 };
