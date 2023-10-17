@@ -27,10 +27,19 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
             <div>
                 {employees.length > 0 &&
                     employees.map((employee) => {
+                        const convertedStartDate = new Date(employee.startDate);
+                        const convertedFinishDate = employee.finishDate
+                            ? new Date(employee.finishDate)
+                            : undefined;
+                        const updatedEmployee = {
+                            ...employee,
+                            startDate: convertedStartDate,
+                            finishDate: convertedFinishDate,
+                        };
                         return (
                             <EmployeeComponent
-                                key={employee.id}
-                                employee={employee}
+                                key={updatedEmployee.id}
+                                employee={updatedEmployee}
                             />
                         );
                     })}
