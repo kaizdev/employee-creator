@@ -3,6 +3,9 @@
 The Employee Creator is a full stack application with CRUD functionality developed on React and Spring.
 Employees can be added, deleted or updated directly through the front end
 
+**Hosted full stack link via Render** - [Employee Creator Online](https://employee-creator-front-end.onrender.com/)
+Note that this is hosted on a free plan, so the database can take up to 3 - 5 minutes to load the data. Please reload the page after this time.
+
 ## Demo & Snippets
 
 All employees:
@@ -29,18 +32,20 @@ Edit employees:
             -   react-router-dom
             -   yup
             -   axios
-    -   Back end: Java, Spring, mySQL
+    -   Back end: Java, Spring, mySQL (if localhost)
         -   Backend dependencies include:
             -   model mapper
             -   lombok
+    -   Hosting: Render (Front end, Back end, Database)
 
 ---
 
-## Build Steps
+## Build Steps on local machine
 
 -   Build the project using `npm install` via terminal
 -   After installation, cd into `employee-frontend` and then run the front end using `npm run dev` and then press `o` or click the local link. This will run on localhost port 5173
--   Create the database table using mySQL and running the command `CREATE DATABASE employee_creator`
+-   Create the database table using mySQL and running the command `CREATE DATABASE employee_creator`.
+-   Update the src/main/resources/static/application.properties to use the mySQL config, and comment out the PostgreSQL config (which is for online)
 -   The back end is started by running `EmployeecreatorApplication.java` in the `src/main/java/io/nology/employeecreator` folder. This will run on port 8080
 
 ---
@@ -110,6 +115,12 @@ Edit employees:
 -   updated front end to get retrieve the employmentTypes and employmentHours from the end points and dynamically populate the selections on the Employee Form
 -   Added additional tests for creating and updating employees
 -   Replaced boiler code with lombok
+
+### 18/10/2023 - Hosted the full stack application on Render
+
+-   Hosted application on Render. End point for backend is https://employee-creator.onrender.com/
+-   Updated CORS and front end code to enable hosted domain
+-   Docker build for the backend
 
 ---
 
