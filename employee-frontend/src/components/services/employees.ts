@@ -1,11 +1,13 @@
+export const host = "https://employee-creator.onrender.com";
+
 export const getAllEmployees = async () => {
     // fetch the data
-    const response = await fetch("http://localhost:8080/employees");
+    const response = await fetch(`${host}/employees`);
     return await response.json();
 };
 
 export const createEmployee = async (data: any) => {
-    const response = await fetch("http://localhost:8080/employees", {
+    const response = await fetch(`${host}/employees`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -19,7 +21,7 @@ export const createEmployee = async (data: any) => {
 };
 
 export const updateEmployee = async (data: any, id: number) => {
-    const response = await fetch(`http://localhost:8080/employees/${id}`, {
+    const response = await fetch(`${host}/employees/${id}`, {
         method: "PATCH",
         body: JSON.stringify(data),
         headers: {
@@ -33,6 +35,6 @@ export const updateEmployee = async (data: any, id: number) => {
 };
 
 export const getEmployeeById = async (id: number) => {
-    const response = await fetch(`http://localhost:8080/employees/${id}`);
+    const response = await fetch(`${host}/employees/${id}`);
     return await response.json();
 };

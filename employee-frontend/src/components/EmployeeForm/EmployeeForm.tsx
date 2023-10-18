@@ -8,6 +8,7 @@ import { RefreshContext } from "../context/RefreshContextProvider";
 import { Employee } from "../services/types.ts";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.tsx";
 import axios from "axios";
+import { host } from "../services/employees";
 
 interface EmployeeFormProps {
     employee: Employee | null;
@@ -25,10 +26,10 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee }) => {
         const fetchOptions = async () => {
             try {
                 const employmentTypesRes = await axios.get(
-                    "http://localhost:8080/employees/employmentTypes"
+                    `${host}/employees/employmentTypes`
                 );
                 const employmentHoursRes = await axios.get(
-                    "http://localhost:8080/employees/employmentHours"
+                    `${host}/employees/employmentHours`
                 );
                 setEmploymentTypes(employmentTypesRes.data);
                 setEmploymentHours(employmentHoursRes.data);

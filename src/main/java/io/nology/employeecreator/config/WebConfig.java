@@ -14,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
       "http://127.0.0.1:3000",
       "http://localhost:5173",
       "http://0.0.0.0:8080",
+      "https://employee-creator-front-end.onrender.com",
     };
     registry
       .addMapping("/**")
