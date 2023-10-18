@@ -1,6 +1,8 @@
+const host = "https://employee-creator.onrender.com";
+
 export const deleteEmployees = async (id: number) => {
     try {
-        const response = await fetch(`http://localhost:8080/employees/${id}`, {
+        const response = await fetch(`${host}/employees/${id}`, {
             method: "DELETE",
         });
 
